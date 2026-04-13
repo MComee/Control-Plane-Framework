@@ -1,0 +1,21 @@
+type: object
+required:
+  - artifact_type
+  - lane
+  - status
+  - dependencies
+properties:
+  artifact_type:
+    type: string
+  lane:
+    type: string
+    enum: [planning, governance, execution, validation]
+  status:
+    type: string
+    enum: [draft, defined, in-progress, validated, accepted]
+  owner:
+    type: [string, 'null']
+  dependencies:
+    type: array
+    items:
+      type: string
