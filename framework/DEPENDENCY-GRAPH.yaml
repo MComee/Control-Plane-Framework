@@ -1,0 +1,28 @@
+version: 1
+artifacts:
+  mission:
+    lane: planning
+    depends_on: []
+  product-brief:
+    lane: planning
+    depends_on: [mission]
+  roadmap:
+    lane: planning
+    depends_on: [mission, product-brief]
+  tasks:
+    lane: execution
+    depends_on: [roadmap]
+  implementation-plan:
+    lane: execution
+    depends_on: [tasks]
+  validation:
+    lane: validation
+    depends_on: [implementation-plan]
+  acceptance:
+    lane: validation
+    depends_on: [validation]
+rules:
+  - name: no_orphan_artifacts
+    description: All artifacts except mission must declare at least one dependency.
+  - name: forward_only_dependencies
+    description: Artifacts may not depend on artifacts in later lifecycle stages.
