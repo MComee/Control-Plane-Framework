@@ -1,0 +1,34 @@
+version: 1
+states:
+  - draft
+  - defined
+  - in-progress
+  - validated
+  - accepted
+transitions:
+  draft:
+    - defined
+  defined:
+    - in-progress
+  in-progress:
+    - validated
+  validated:
+    - accepted
+artifact_state_expectations:
+  planning:
+    minimum_state: defined
+  governance:
+    minimum_state: defined
+  execution:
+    minimum_state: in-progress
+  validation:
+    minimum_state: validated
+  acceptance:
+    minimum_state: accepted
+rules:
+  - name: acceptance_requires_validation
+    description: Acceptance artifacts must not be accepted unless validation dependencies are validated or accepted.
+  - name: execution_requires_planning
+    description: Execution artifacts must not enter in-progress unless planning dependencies exist.
+  - name: validation_requires_execution
+    description: Validation artifacts must reference execution artifacts.
