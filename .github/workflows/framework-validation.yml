@@ -1,0 +1,33 @@
+name: Framework Validation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate required structure
+        run: |
+          test -d framework/planning
+          test -d framework/governance
+          test -d framework/execution
+          test -d framework/validation
+
+      - name: Validate protocol layer
+        run: |
+          test -f docs/protocols/genesis-omni/canonical-genesis-omni-2.7-st.md
+          test -f docs/protocols/genesis-omni/framework-adoption.md
+          test -f docs/protocols/genesis-omni/protocol-status.md
+
+      - name: Validate core templates
+        run: |
+          test -f framework/planning/mission.template.md
+          test -f framework/planning/roadmap.template.md
+          test -f framework/governance/priorities.template.md
+          test -f framework/governance/constraints.template.md
+          test -f framework/execution/tasks.template.md
+          test -f framework/validation/acceptance.template.md
