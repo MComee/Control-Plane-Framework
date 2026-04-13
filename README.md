@@ -1,0 +1,190 @@
+# Control Plane Framework
+
+A reusable control-plane framework for governed AI-assisted software development.
+
+Control Plane Framework is a model-agnostic repository framework for planning, governing, executing, and validating software work across both chat-based and command-line AI tooling.
+
+It is designed for developers who do not want to rebuild process, workflow structure, and repository conventions from scratch for every new project. Instead, the framework provides a repeatable control layer that can be forked and adapted to new applications, systems, and experiments.
+
+## Purpose
+
+This framework treats the repository as more than a code container. It treats the repository as part of the project's control system.
+
+That means the repository is structured to support:
+
+- planning before implementation
+- explicit governance and prioritization
+- controlled execution workflows
+- validation before acceptance
+- reusable project initialization patterns
+- model-agnostic AI-assisted development
+
+## What problem it solves
+
+Many projects begin with an implementation-first workflow and only later attempt to organize planning, constraints, quality gates, and review practices. That often creates drift, rework, unclear priorities, and inconsistent execution.
+
+In AI-assisted development, the problem becomes more pronounced when multiple tools are used without a unifying workflow. Different models may be strong at different tasks, but without an operating structure, tool switching creates fragmentation rather than leverage.
+
+Control Plane Framework solves this by providing:
+
+- a reusable repository structure for new projects
+- predefined lanes for planning, governance, execution, and validation
+- templates that standardize project startup and iteration
+- a protocol layer for workflow discipline and control expectations
+- a model-agnostic structure that remains stable even when tools change
+
+## Model-Agnostic Workflow Orchestration
+
+Control Plane Framework is designed to unify workflows across multiple AI tools rather than enforce reliance on a single model, interface, or vendor.
+
+Modern AI-assisted development often involves both:
+
+- chat-based interfaces for planning, reasoning, decomposition, review, and structured collaboration
+- command-line or programmatic tools for implementation, local iteration, file operations, and repository work
+
+This framework provides a structure that allows both to operate within a single governed workflow.
+
+### Multi-Model Strategy
+
+Instead of selecting a single tool for every task, this framework supports a multi-model approach:
+
+- different tools can be used for different classes of work
+- tools can be selected based on strengths rather than convenience
+- workflows remain consistent even as models and interfaces change
+
+A developer may choose to:
+
+- use one chat-based tool for planning and decomposition
+- use another for critique, review, or alternative reasoning
+- use a command-line tool or local runtime for implementation and iteration
+
+The framework does not prescribe which tools to use. It assumes that:
+
+- multiple tools may be used in the same project
+- different tools may perform better on different problems
+- the workflow should remain stable regardless of tool choice
+
+### Integration Expectations
+
+The framework is designed to work with tools that can interact with a repository in a controlled way.
+
+Typical capabilities include:
+
+- reading repository context
+- writing or proposing structured file changes
+- following prompt or workflow templates
+- operating inside defined constraints and review gates
+
+In practice, this may include:
+
+- chat-based AI tools with repository integration
+- command-line AI tools operating on a local checkout
+- custom or self-hosted interfaces built on top of model APIs and Git workflows
+
+The framework does not depend on a single integration mechanism. It can be used with:
+
+- direct GitHub integrations
+- local Git workflows
+- custom adapters or orchestration layers
+
+### Separation of Workflow and Tooling
+
+A key design principle of the framework is separation between:
+
+- **workflow structure**: planning, governance, execution, validation
+- **tooling choice**: which model or interface is used for a given task
+
+This separation allows:
+
+- tools to be swapped without redesigning the workflow
+- multiple tools to be used in parallel
+- experimentation with new models without destabilizing project process
+
+### Why this matters
+
+AI tooling changes rapidly, and no single model is consistently optimal across all tasks.
+
+By structuring development around a stable control plane rather than a single tool, this framework enables:
+
+- more reliable workflows
+- better use of model-specific strengths
+- reduced coupling between process and tooling
+- long-term adaptability as new tools emerge
+
+The result is a system where the developer remains in control of the workflow, while AI tools act as interchangeable components within that system.
+
+## Core operating model
+
+The framework is organized around four primary lanes:
+
+### 1. Planning
+Used to define mission, scope, product brief, roadmap, assumptions, and backlog before implementation begins.
+
+### 2. Governance
+Used to define priorities, constraints, decision rules, review gates, and operating standards.
+
+### 3. Execution
+Used to convert plans into implementation tasks, work items, changes, and iteration flow.
+
+### 4. Validation
+Used to verify readiness, acceptance criteria, auditability, and quality before changes are treated as complete.
+
+## Repository layout
+
+```text
+.
+├── README.md
+├── docs/
+│   ├── overview.md
+│   ├── architecture.md
+│   ├── quickstart.md
+│   └── protocols/
+│       └── genesis-omni-2.7.md
+├── framework/
+│   ├── planning/
+│   ├── governance/
+│   ├── execution/
+│   └── validation/
+└── .github/
+    └── PULL_REQUEST_TEMPLATE.md
+```
+
+## Genesis Omni 2.7 protocol
+
+This repository includes Genesis Omni 2.7 as a built-in guidance layer under `docs/protocols/genesis-omni-2.7.md`.
+
+Within this framework, the protocol functions as a governance and operating reference. It is not treated as a separate product dependency. Its purpose is to define workflow posture, control expectations, and disciplined project behavior that can be inherited by future forks.
+
+## How to use this repository
+
+### Option 1: Use as a public reference
+Review the structure, documentation, and templates to understand the control-plane model and adapt the ideas to your own environment.
+
+### Option 2: Fork for a new private project
+Fork this repository into a private repository and use it as the starting framework for a new application or system.
+
+Typical flow:
+
+1. Fork the framework.
+2. Rename the project.
+3. Complete the planning templates.
+4. Define priorities and constraints.
+5. Execute within the established control structure.
+6. Validate before milestone acceptance.
+
+## Design principles
+
+- Reuse process, not just code
+- Separate framework concerns from product concerns
+- Keep governance visible
+- Plan before implementing
+- Use AI assistance in a structured way
+- Preserve human review at meaningful decision points
+- Make new project startup repeatable
+
+## Status
+
+This repository is an evolving framework intended to serve as both:
+
+- a reusable foundation for future project forks
+- a public architectural reference for governed AI-assisted development workflows
