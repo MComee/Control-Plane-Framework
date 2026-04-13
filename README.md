@@ -6,6 +6,20 @@ Control Plane Framework is a model-agnostic repository framework for planning, g
 
 It is designed for developers who do not want to rebuild process, workflow structure, and repository conventions from scratch for every new project. Instead, the framework provides a repeatable control layer that can be forked and adapted to new applications, systems, and experiments.
 
+## Start Here
+
+If you are evaluating the framework or preparing to fork it for a new project, use this reading order:
+
+- [Start Here](docs/start-here.md)
+- [Overview](docs/overview.md)
+- [Architecture](docs/architecture.md)
+- [Tool Selection](docs/tool-selection.md)
+- [Repository Governance](docs/repository-governance.md)
+- [Forking Pattern](docs/forking-pattern.md)
+- [Use Cases](docs/use-cases.md)
+- [Framework Diagram](docs/diagram.md)
+- [Genesis Omni 2.7 Protocol](docs/protocols/genesis-omni-2.7.md)
+
 ## Purpose
 
 This framework treats the repository as more than a code container. It treats the repository as part of the project's control system.
@@ -113,6 +127,22 @@ By structuring development around a stable control plane rather than a single to
 
 The result is a system where the developer remains in control of the workflow, while AI tools act as interchangeable components within that system.
 
+## Recommended repository posture
+
+This repository is intended to remain a clean, reusable public framework.
+
+Recommended posture:
+
+- keep `main` protected and reviewed
+- make changes through branches and pull requests
+- require owner review before merge
+- use private forks or derivative repositories for product-specific implementation work
+
+See:
+
+- [Repository Governance](docs/repository-governance.md)
+- [.github/CODEOWNERS](.github/CODEOWNERS)
+
 ## Core operating model
 
 The framework is organized around four primary lanes:
@@ -129,62 +159,45 @@ Used to convert plans into implementation tasks, work items, changes, and iterat
 ### 4. Validation
 Used to verify readiness, acceptance criteria, auditability, and quality before changes are treated as complete.
 
+## Example use cases
+
+Control Plane Framework is designed for:
+
+- private application development
+- internal tooling
+- CLI tools
+- research and experimentation
+- multi-model workflows that combine chat-based and command-line AI tools
+
+See [Use Cases](docs/use-cases.md) for details.
+
 ## Repository layout
 
 ```text
 .
 ├── README.md
+├── LICENSE
+├── CONTRIBUTING.md
 ├── docs/
+│   ├── start-here.md
 │   ├── overview.md
 │   ├── architecture.md
 │   ├── quickstart.md
+│   ├── tool-selection.md
+│   ├── repository-governance.md
+│   ├── forking-pattern.md
+│   ├── use-cases.md
+│   ├── diagram.md
 │   └── protocols/
 │       └── genesis-omni-2.7.md
+├── examples/
+│   └── sample-project-brief.md
 ├── framework/
 │   ├── planning/
 │   ├── governance/
 │   ├── execution/
 │   └── validation/
 └── .github/
+    ├── CODEOWNERS
+    ├── ISSUE_TEMPLATE/
     └── PULL_REQUEST_TEMPLATE.md
-```
-
-## Genesis Omni 2.7 protocol
-
-This repository includes Genesis Omni 2.7 as a built-in guidance layer under `docs/protocols/genesis-omni-2.7.md`.
-
-Within this framework, the protocol functions as a governance and operating reference. It is not treated as a separate product dependency. Its purpose is to define workflow posture, control expectations, and disciplined project behavior that can be inherited by future forks.
-
-## How to use this repository
-
-### Option 1: Use as a public reference
-Review the structure, documentation, and templates to understand the control-plane model and adapt the ideas to your own environment.
-
-### Option 2: Fork for a new private project
-Fork this repository into a private repository and use it as the starting framework for a new application or system.
-
-Typical flow:
-
-1. Fork the framework.
-2. Rename the project.
-3. Complete the planning templates.
-4. Define priorities and constraints.
-5. Execute within the established control structure.
-6. Validate before milestone acceptance.
-
-## Design principles
-
-- Reuse process, not just code
-- Separate framework concerns from product concerns
-- Keep governance visible
-- Plan before implementing
-- Use AI assistance in a structured way
-- Preserve human review at meaningful decision points
-- Make new project startup repeatable
-
-## Status
-
-This repository is an evolving framework intended to serve as both:
-
-- a reusable foundation for future project forks
-- a public architectural reference for governed AI-assisted development workflows
