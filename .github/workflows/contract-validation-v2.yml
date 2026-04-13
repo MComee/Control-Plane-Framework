@@ -1,0 +1,17 @@
+name: Contract Validation V2
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  contract-v2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Run framework validator v2
+        run: python scripts/validate_framework_v2.py
