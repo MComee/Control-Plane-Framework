@@ -1,0 +1,23 @@
+version: 1
+artifacts:
+  mission:
+    path: framework/planning/mission.template.v2.md
+    lane: planning
+  product-brief:
+    path: framework/planning/product-brief.template.v2.md
+    lane: planning
+  roadmap:
+    path: framework/planning/roadmap.template.v2.md
+    lane: planning
+  tasks:
+    path: framework/execution/tasks.template.v2.md
+    lane: execution
+  implementation-plan:
+    path: framework/execution/implementation-plan.template.v2.md
+    lane: execution
+  validation:
+    path: framework/validation/validation.template.v2.md
+    lane: validation
+  acceptance:
+    path: framework/validation/acceptance.template.v2.md
+    lane: validation
