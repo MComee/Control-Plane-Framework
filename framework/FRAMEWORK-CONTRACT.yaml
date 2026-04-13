@@ -1,0 +1,132 @@
+version: 1
+name: Control Plane Framework Contract
+protocol_layer:
+  required_files:
+    - docs/protocols/PROTOCOL-LAYER.md
+    - docs/protocols/genesis-omni/canonical-genesis-omni-2.7-st.md
+    - docs/protocols/genesis-omni/framework-adoption.md
+    - docs/protocols/genesis-omni/protocol-status.md
+lanes:
+  planning:
+    required_files:
+      - framework/planning/mission.template.md
+      - framework/planning/product-brief.template.md
+      - framework/planning/roadmap.template.md
+    optional_files:
+      - framework/planning/backlog.template.md
+  governance:
+    required_files:
+      - framework/governance/priorities.template.md
+      - framework/governance/constraints.template.md
+      - framework/governance/protocol-layer.md
+    optional_files:
+      - framework/governance/review-gates.template.md
+  execution:
+    required_files:
+      - framework/execution/tasks.template.md
+      - framework/execution/implementation-plan.template.md
+      - framework/execution/change-record.template.md
+  validation:
+    required_files:
+      - framework/validation/acceptance.template.md
+      - framework/validation/test-plan.template.md
+      - framework/validation/audit-notes.template.md
+artifacts:
+  framework/planning/mission.template.md:
+    required_headings:
+      - Project name
+      - One-sentence mission
+      - Problem being solved
+      - Intended users
+      - Target outcome
+      - Non-goals
+      - Initial assumptions
+      - Open questions
+  framework/planning/product-brief.template.md:
+    required_headings:
+      - Project name
+      - Summary
+      - Problem statement
+      - Intended users
+      - Primary use cases
+      - Desired outcomes
+      - Success metrics
+      - Non-goals
+      - Assumptions
+      - Open questions
+  framework/planning/roadmap.template.md:
+    required_headings:
+      - Horizon 1: immediate work
+      - Horizon 2: near-term work
+      - Horizon 3: longer-term work
+      - Dependencies
+      - Risks
+  framework/governance/priorities.template.md:
+    required_headings:
+      - Current top priorities
+      - Priority rules
+      - Escalation criteria
+  framework/governance/constraints.template.md:
+    required_headings:
+      - Technical constraints
+      - Product constraints
+      - Security or safety constraints
+      - Time or resource constraints
+      - Hard boundaries
+  framework/governance/protocol-layer.md:
+    required_headings:
+      - Purpose
+      - Position in the framework
+      - Governance responsibilities
+      - Operational interpretation
+      - Enforcement model
+      - Outcome
+  framework/execution/tasks.template.md:
+    required_headings:
+      - Active tasks
+      - Blocked tasks
+      - Completed tasks
+      - Notes
+  framework/execution/implementation-plan.template.md:
+    required_headings:
+      - Scope of this implementation cycle
+      - Planned changes
+      - Dependencies
+      - Risks and failure modes
+      - Rollback or recovery notes
+  framework/execution/change-record.template.md:
+    required_headings:
+      - Change ID
+      - Description
+      - Reason
+      - Affected artifacts
+      - Risks
+      - Validation performed
+      - Rollback plan
+  framework/validation/acceptance.template.md:
+    required_headings:
+      - Milestone or change being accepted
+      - Acceptance criteria
+      - Evidence reviewed
+      - Outstanding issues
+      - Final decision
+  framework/validation/test-plan.template.md:
+    required_headings:
+      - Objectives
+      - Test categories
+      - Critical paths
+      - Failure conditions
+  framework/validation/audit-notes.template.md:
+    required_headings:
+      - Scope
+      - Assets reviewed
+      - Findings
+      - Risk level
+      - Remediation
+      - Verification status
+required_support_files:
+  - README.md
+  - CONTRIBUTING.md
+  - LICENSE
+  - .github/CODEOWNERS
+  - .github/PULL_REQUEST_TEMPLATE.md
