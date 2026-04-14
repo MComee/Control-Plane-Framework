@@ -42,10 +42,13 @@ It also supports a workflow in which the framework can evolve carefully while ac
 1. Start from the public Control Plane Framework repository.
 2. Fork the repository or clone its structure into a new private repository.
 3. Rename the project to match the new application or system.
-4. Complete the planning templates for the project context.
-5. Define project-specific governance constraints and acceptance criteria.
-6. Perform implementation work in the private repository.
-7. Promote only reusable framework improvements back to the public framework repository.
+4. Instantiate the project operating structure under `projects/<project-name>/`.
+5. Capture the project's protected core vision.
+6. Complete initial module and task decomposition.
+7. Define project-specific governance constraints and acceptance criteria.
+8. Create the active-work handoff package.
+9. Perform implementation work in the private repository.
+10. Promote only reusable framework improvements back to the public framework repository.
 
 ## What belongs in the public framework repo
 

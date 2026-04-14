@@ -46,6 +46,7 @@ Control Plane Framework solves this by providing:
 - templates that standardize project startup and iteration
 - a protocol layer for workflow discipline and control expectations
 - a model-agnostic structure that remains stable even when tools change
+- a required project operating structure that preserves product vision, decomposition, priorities, and active execution handoff
 
 ## Model-Agnostic Workflow Orchestration
 
@@ -159,6 +160,26 @@ Used to convert plans into implementation tasks, work items, changes, and iterat
 ### 4. Validation
 Used to verify readiness, acceptance criteria, auditability, and quality before changes are treated as complete.
 
+## Project Control Structure
+
+Control Plane Framework governs framework posture and also expects each real project to instantiate a canonical project workspace under `projects/<project-name>/`.
+
+A fully initialized project includes:
+
+- a protected core vision
+- modular decomposition derived from that vision
+- atomic task artifacts
+- explicit planning priorities
+- an authoritative active-work package
+- evidence locations for validation continuity
+
+See:
+
+- [Project Operating Contract](docs/project-operating-contract.md)
+- [Project Initialization Standard](docs/project-initialization-standard.md)
+- [Planning Synchronization Rule](docs/planning-synchronization-rule.md)
+- [Active Work Handoff](docs/active-work-handoff.md)
+
 ## Example use cases
 
 Control Plane Framework is designed for:
@@ -188,12 +209,41 @@ See [Use Cases](docs/use-cases.md) for details.
 │   ├── forking-pattern.md
 │   ├── use-cases.md
 │   ├── diagram.md
+│   ├── project-operating-contract.md
+│   ├── project-initialization-standard.md
+│   ├── planning-synchronization-rule.md
+│   ├── active-work-handoff.md
 │   └── protocols/
 │       └── genesis-omni-2.7.md
 ├── examples/
 │   └── sample-project-brief.md
 ├── framework/
 │   ├── planning/
+│   │   └── project-template/
+│   │       ├── README.md
+│   │       ├── vision/
+│   │       │   ├── core_vision.md
+│   │       │   ├── constraints.md
+│   │       │   └── brainstorming.md
+│   │       ├── docs/
+│   │       │   ├── modules/
+│   │       │   │   └── README.md
+│   │       │   ├── tasks/
+│   │       │   │   └── README.md
+│   │       │   ├── priorities/
+│   │       │   │   ├── now.md
+│   │       │   │   ├── next.md
+│   │       │   │   ├── later.md
+│   │       │   │   ├── blocked.md
+│   │       │   │   └── done.md
+│   │       │   ├── roadmap.md
+│   │       │   ├── decisions.md
+│   │       │   ├── definition_of_done.md
+│   │       │   └── execution_control.md
+│   │       └── now/
+│   │           ├── description.md
+│   │           ├── prompt.md
+│   │           └── metadata.json
 │   ├── governance/
 │   ├── execution/
 │   └── validation/
@@ -201,3 +251,4 @@ See [Use Cases](docs/use-cases.md) for details.
     ├── CODEOWNERS
     ├── ISSUE_TEMPLATE/
     └── PULL_REQUEST_TEMPLATE.md
+```

@@ -44,6 +44,19 @@ Each lane has templates that can be completed at project startup and refined ove
 5. Execute implementation work inside the control structure.
 6. Validate milestones before treating changes as complete.
 
+## Project control beyond framework posture
+
+Control Plane Framework is intended to organize itself and to instantiate a durable control structure for the actual project being built with it.
+
+That project control structure includes:
+
+- protected core vision
+- modular decomposition
+- atomic task structure
+- explicit priorities
+- a single authoritative active-work handoff
+- reduced drift during AI-assisted planning and implementation
+
 ## Outcome
 
 The intended outcome is a project environment where AI tools are useful without becoming the workflow itself. The developer remains in control, and the framework provides the operating structure that keeps work coherent as tools, models, and implementation details evolve.

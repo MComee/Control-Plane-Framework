@@ -1,0 +1,19 @@
+{
+"project_name": "<project-name>",
+"lane": "Execution",
+"task_id": "TASK-000",
+"status": "pending",
+"created_at": "YYYY-MM-DD",
+"updated_at": "YYYY-MM-DD",
+"depends_on": [],
+"allowed_paths": [],
+"forbidden_paths": [],
+"validation_requirements": [],
+"evidence_paths": [
+"evidence/run_logs/",
+"evidence/test_runs/",
+"evidence/artifacts/"
+],
+"supersedes": null,
+"superseded_by": null
+}

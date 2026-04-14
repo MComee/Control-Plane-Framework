@@ -19,3 +19,23 @@ If your goal is to start a new project quickly:
 - define governance constraints
 - set acceptance criteria
 - begin implementation only after the basic control structure is in place
+
+## Project initialization requirement
+
+Before real implementation work begins in a derived project, the project operating structure must be instantiated.
+
+At minimum, this includes:
+
+- a canonical project workspace
+- a protected core vision
+- initial module decomposition
+- initial task artifacts
+- priority files
+- an active-work handoff package
+
+See:
+
+- [Project Operating Contract](/docs/project-operating-contract.md)
+- [Project Initialization Standard](/docs/project-initialization-standard.md)
+- [Active Work Handoff](/docs/active-work-handoff.md)
+- [Planning Synchronization Rule](/docs/planning-synchronization-rule.md)
