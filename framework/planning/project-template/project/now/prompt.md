@@ -13,3 +13,5 @@ Recommended sections:
 * evidence requirements
 * completion criteria
 * blocked-state instructions
+
+Execution tools must not mutate protected planning files.

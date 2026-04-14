@@ -7,10 +7,20 @@
   "updated_at": "YYYY-MM-DD",
   "depends_on": [],
   "allowed_paths": [
-    "project/"
+    "project/app/",
+    "project/evidence/"
   ],
-  "forbidden_paths": [],
-  "validation_requirements": [],
+  "forbidden_paths": [
+    "project/vision/core_vision.md",
+    "project/vision/constraints.md",
+    "project/docs/features/",
+    "project/docs/task_groups/",
+    "project/docs/priorities/"
+  ],
+  "validation_requirements": [
+    "no_protected_file_mutation",
+    "evidence_returned"
+  ],
   "evidence_paths": [
     "project/evidence/run_logs/",
     "project/evidence/test_runs/",

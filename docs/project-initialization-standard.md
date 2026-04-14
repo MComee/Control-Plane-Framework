@@ -2,71 +2,70 @@
 
 ## Purpose
 
-Define what it means to initialize a real project from Control Plane Framework.
+Define what it means to initialize one real project from Control Plane Framework.
 
-This standard exists so that a derived repository does more than copy framework docs. It must instantiate a working control structure for the one product or system being built.
+A derived repository is not ready until the controlled `project/` workspace is instantiated.
 
 ---
 
 ## A project is not fully initialized until it has
 
 1. a canonical project workspace
-2. a protected core vision
-3. initial module decomposition
-4. initial task decomposition
-5. explicit priority files
-6. an authoritative active-work package
-7. evidence directories
+2. protected vision artifacts
+3. initial feature decomposition
+4. initial task-group decomposition
+5. initial atomic tasks
+6. explicit priority files
+7. an authoritative active-work package
+8. evidence directories
 
 ---
 
 ## Required workspace
 
-Each derived repository should instantiate its controlled project under:
+Instantiate the controlled project under:
 
 `project/`
-
-This allows the framework to remain stable while project-specific control state lives in one defined location.
 
 ---
 
 ## Required initialization steps
 
-### Step 1: Create the project workspace
+### Step 1: Create project workspace
 
-Create `project/` and required control subdirectories.
+Create `project/` and core control directories.
 
-### Step 2: Capture the core vision
+### Step 2: Capture protected vision
 
-Create `project/vision/core_vision.md` with the project's north-star intent.
+Create:
 
-### Step 3: Record constraints
+- `project/vision/core_vision.md`
+- `project/vision/constraints.md`
+- `project/vision/brainstorming.md`
 
-Create `project/vision/constraints.md` to document guardrails, assumptions, or non-negotiables.
+### Step 3: Start decomposition
 
-### Step 4: Start decomposition
+Create at least:
 
-Create at least one module file under `project/docs/modules/`.
+- one feature file under `project/docs/features/`
+- one task-group file under `project/docs/task_groups/`
+- one atomic task file under `project/docs/tasks/`
 
-### Step 5: Create initial tasks
+### Step 4: Establish priorities
 
-Create bounded task files under `project/docs/tasks/` derived from module decomposition.
+Populate `project/docs/priorities/`.
 
-### Step 6: Establish priorities
+### Step 5: Establish active work
 
-Populate priority files under `project/docs/priorities/`.
+Create `project/now/description.md`, `project/now/prompt.md`, and `project/now/metadata.json`.
 
-### Step 7: Establish active work
+### Step 6: Establish evidence locations
 
-Create the active-work package under `project/now/`.
+Create `project/evidence/run_logs/`, `project/evidence/test_runs/`, and `project/evidence/artifacts/`.
 
-### Step 8: Establish evidence locations
+### Step 7: Establish implementation placeholder
 
-Create evidence directories under `project/evidence/`.
-
-### Step 9: Create implementation placeholder
-
-Create `project/app/` as the placeholder where stack-specific implementation lives.
+Create `project/app/`.
 
 ---
 
@@ -79,7 +78,8 @@ project/
 │   ├── constraints.md
 │   └── brainstorming.md
 ├── docs/
-│   ├── modules/
+│   ├── features/
+│   ├── task_groups/
 │   ├── tasks/
 │   ├── priorities/
 │   │   ├── now.md
@@ -106,4 +106,4 @@ project/
 
 ## Bottom Line
 
-A derived repository is ready for disciplined AI-assisted development only after its single controlled project structure under `project/` has been instantiated.
+A derived repository is ready only after its single controlled `project/` structure is in place.

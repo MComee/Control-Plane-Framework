@@ -1,14 +1,15 @@
 # Tasks
 
-Create one file per bounded, reviewable task.
+Create one file per bounded, reviewable atomic task.
 
-Tasks should remain traceable to the project's modules and, where possible, to the vision.
+Tasks should remain traceable to task groups, features, and the protected vision.
 
 Recommended task contents:
 
 * task id
 * title
-* parent module(s)
+* parent task group(s)
+* parent feature(s)
 * purpose
 * dependencies
 * allowed scope

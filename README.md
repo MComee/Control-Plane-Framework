@@ -2,9 +2,9 @@
 
 A reusable control-plane framework for governed AI-assisted software development.
 
-Control Plane Framework is a model-agnostic repository framework for planning, governing, executing, and validating software work across both chat-based and command-line AI tooling.
+Control Plane Framework is a model-agnostic repository framework for planning, governing, executing, and validating software work across chat-based and command-line AI tooling.
 
-It is designed for developers who do not want to rebuild process, workflow structure, and repository conventions from scratch for every new project. Instead, the framework provides a repeatable control layer that can be forked and adapted to new applications, systems, and experiments.
+It is designed for developers who do not want to rebuild process, workflow structure, and repository conventions from scratch for every new project. Instead, the framework provides a repeatable control layer that can be forked and adapted per project.
 
 ## Start Here
 
@@ -22,9 +22,9 @@ If you are evaluating the framework or preparing to fork it for a new project, u
 
 ## Purpose
 
-This framework treats the repository as more than a code container. It treats the repository as part of the project's control system.
+This framework treats the repository as part of the project's control system, not only as a code container.
 
-That means the repository is structured to support:
+It is structured to support:
 
 - planning before implementation
 - explicit governance and prioritization
@@ -35,88 +35,44 @@ That means the repository is structured to support:
 
 ## What problem it solves
 
-Many projects begin with an implementation-first workflow and only later attempt to organize planning, constraints, quality gates, and review practices. That often creates drift, rework, unclear priorities, and inconsistent execution.
+Many projects begin with implementation-first workflows and only later attempt to organize planning, constraints, quality gates, and review practices. That often creates drift, rework, unclear priorities, and inconsistent execution.
 
-In AI-assisted development, the problem becomes more pronounced when multiple tools are used without a unifying workflow. Different models may be strong at different tasks, but without an operating structure, tool switching creates fragmentation rather than leverage.
+In AI-assisted development, drift becomes more pronounced when multiple tools are used without a unifying workflow.
 
-Control Plane Framework solves this by providing:
+Control Plane Framework addresses this by providing:
 
 - a reusable repository structure for new projects
 - predefined lanes for planning, governance, execution, and validation
 - templates that standardize project startup and iteration
 - a protocol layer for workflow discipline and control expectations
-- a model-agnostic structure that remains stable even when tools change
-- a required project operating structure that preserves product vision, decomposition, priorities, and active execution handoff
-
-## Model-Agnostic Workflow Orchestration
-
-Control Plane Framework is designed to unify workflows across multiple AI tools rather than enforce reliance on a single model, interface, or vendor.
-
-Modern AI-assisted development often involves both:
-
-- chat-based interfaces for planning, reasoning, decomposition, review, and structured collaboration
-- command-line or programmatic tools for implementation, local iteration, file operations, and repository work
-
-This framework provides a structure that allows both to operate within a single governed workflow.
-
-## Recommended repository posture
-
-This repository is intended to remain a clean, reusable public framework.
-
-Recommended posture:
-
-- keep `main` protected and reviewed
-- make changes through branches and pull requests
-- require owner review before merge
-- use private forks or derivative repositories for product-specific implementation work
-
-See:
-
-- [Repository Governance](docs/repository-governance.md)
-- [.github/CODEOWNERS](.github/CODEOWNERS)
-
-## Core operating model
-
-The framework is organized around four primary lanes:
-
-### 1. Planning
-Used to define mission, scope, product brief, roadmap, assumptions, and backlog before implementation begins.
-
-### 2. Governance
-Used to define priorities, constraints, decision rules, review gates, and operating standards.
-
-### 3. Execution
-Used to convert plans into implementation tasks, work items, changes, and iteration flow.
-
-### 4. Validation
-Used to verify readiness, acceptance criteria, auditability, and quality before changes are treated as complete.
+- a model-agnostic structure that remains stable when tools change
+- a required single-project operating structure that preserves vision, decomposition, priorities, and active execution handoff
 
 ## Layered control model
 
-Each derived repository instance controls exactly one real project.
+Each derived repository instance controls exactly one project and operates three layers:
 
-The framework uses three control layers:
+### 1. Framework self-governance
 
-### Framework self-governance
+The framework governs itself and preserves doctrine, anti-drift rules, and reusable control patterns.
 
-The framework governs itself so doctrine, anti-drift rules, and reusable control patterns remain stable and reviewable.
+### 2. Project control
 
-### Project control
-
-The same repository governs one controlled project under `project/`, including:
+The repository governs one controlled project under `project/`, including:
 
 - protected vision
-- modular decomposition
-- atomic task artifacts
+- feature-level decomposition
+- task-group decomposition
+- atomic tasks
 - explicit priorities
 - active work state
 - evidence continuity
 
-### Execution handoff
+### 3. Execution handoff
 
 The active work package under `project/now/` is the canonical bridge from planning truth to implementation execution.
 
-Tool-specific prompts or adapter instructions are derived from that package so execution remains bounded and auditable across interfaces.
+Tool-specific prompts or adapter instructions should be derived from that package so execution remains bounded and auditable across interfaces.
 
 See:
 
@@ -125,9 +81,51 @@ See:
 - [Planning Synchronization Rule](docs/planning-synchronization-rule.md)
 - [Active Work Handoff](docs/active-work-handoff.md)
 
+## Control Routing Model
+
+When an AI tool connects to this repository, it should route by phase:
+
+1. Read `README.md`.
+2. Determine current phase:
+- Planning
+- Execution Prep
+- Execution
+- Validation
+3. Follow phase-specific control paths.
+
+### Planning
+
+Read and synchronize:
+
+- `project/vision/`
+- `project/docs/features/`
+- `project/docs/task_groups/`
+- `project/docs/tasks/`
+- `project/docs/priorities/`
+
+### Execution Prep
+
+Use the active-work package:
+
+- `project/now/description.md`
+- `project/now/prompt.md`
+- `project/now/metadata.json`
+
+### Execution
+
+Modify only allowed execution paths for the current task.
+
+### Validation
+
+Verify:
+
+- no protected files changed
+- output matches the active prompt
+- evidence exists in required evidence paths
+
 ## Project Control Structure
 
-A derived repository is considered operationally initialized when it instantiates one canonical controlled project workspace at `project/`.
+A derived repository is operationally initialized when it instantiates one controlled project workspace at `project/`.
 
 Minimum project control structure:
 
@@ -138,7 +136,8 @@ project/
 │   ├── constraints.md
 │   └── brainstorming.md
 ├── docs/
-│   ├── modules/
+│   ├── features/
+│   ├── task_groups/
 │   ├── tasks/
 │   ├── priorities/
 │   │   ├── now.md
@@ -160,6 +159,22 @@ project/
 │   └── artifacts/
 └── app/
 ```
+
+## Recommended repository posture
+
+This repository is intended to remain a clean, reusable public framework.
+
+Recommended posture:
+
+- keep `main` protected and reviewed
+- make changes through branches and pull requests
+- require owner review before merge
+- use private forks or derivative repositories for product-specific implementation work
+
+See:
+
+- [Repository Governance](docs/repository-governance.md)
+- [.github/CODEOWNERS](.github/CODEOWNERS)
 
 ## Example use cases
 
@@ -208,7 +223,9 @@ See [Use Cases](docs/use-cases.md) for details.
 │   │           │   ├── constraints.md
 │   │           │   └── brainstorming.md
 │   │           ├── docs/
-│   │           │   ├── modules/
+│   │           │   ├── features/
+│   │           │   │   └── README.md
+│   │           │   ├── task_groups/
 │   │           │   │   └── README.md
 │   │           │   ├── tasks/
 │   │           │   │   └── README.md

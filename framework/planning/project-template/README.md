@@ -2,18 +2,11 @@
 
 ## Purpose
 
-This directory provides a starter control structure for initializing one real project from Control Plane Framework.
+This directory provides a single-project control structure template for derived Control Plane Framework repositories.
 
-It is not a complete product template for every language or stack.
+It is not a language or stack template.
 
-It is a control-plane template that preserves:
-
-- protected project vision
-- modular decomposition
-- atomic task structure
-- explicit priorities
-- active-work handoff
-- evidence continuity
+It is a control template for consistent planning, execution handoff, and validation across AI tools.
 
 ## Instantiation model
 
@@ -21,6 +14,16 @@ A derived repository should instantiate one controlled project at:
 
 `project/`
 
-The template in this directory already reflects that single-project structure.
+This structure is designed to be used consistently by ChatGPT, Gemini, Claude, Codex, and local tools.
 
-The `project/app/` directory is a placeholder for stack-specific implementation code.
+## Included control areas
+
+- protected project vision
+- feature decomposition
+- task-group decomposition
+- atomic task definitions
+- explicit priorities
+- active-work handoff package
+- evidence continuity
+
+`project/app/` is a placeholder for stack-specific implementation code.

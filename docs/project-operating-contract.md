@@ -2,23 +2,21 @@
 
 ## Purpose
 
-Define the minimum required control structure for the single controlled project initialized from Control Plane Framework.
+Define the minimum required control structure for the single controlled project in a derived Control Plane Framework repository.
 
-This contract ensures the framework governs not only itself, but also the planning, decomposition, prioritization, and execution flow of the one software project being built in a derived repository.
-
-The goal is to prevent planning drift, preserve project vision, keep decomposition durable, and provide a human-reviewable, machine-consumable active-work handoff for execution tools.
+This contract ensures the framework governs both itself and the one project's planning, decomposition, prioritization, and execution handoff.
 
 ---
 
 ## Layer relationship
 
-Control Plane Framework in a derived repository should be operated as:
+Control Plane Framework in a derived repository operates three layers:
 
-1. framework self-governance layer
-2. project control layer
-3. execution handoff layer
+1. framework self-governance
+2. project control
+3. execution handoff
 
-This document defines the project control layer and its interface to execution handoff.
+This document defines the project control layer and its execution safety boundaries.
 
 ---
 
@@ -26,13 +24,14 @@ This document defines the project control layer and its interface to execution h
 
 A derived repository is not operationally initialized until it has:
 
-- one canonical controlled project workspace at `project/`
-- a protected core vision
-- modular planning artifacts derived from that vision
-- atomic task artifacts derived from those modules
+- one canonical project workspace at `project/`
+- protected vision artifacts
+- feature decomposition
+- task-group decomposition
+- atomic task artifacts
 - explicit priority state
 - a single authoritative active-work package
-- evidence locations for validation and repair continuity
+- evidence locations for validation continuity
 
 ---
 
@@ -49,7 +48,7 @@ Inside that workspace, the following top-level directories are required:
 - `now/`
 - `evidence/`
 
-An implementation directory such as `app/`, `src/`, or another stack-appropriate location may also exist inside `project/`, but it does not replace the required control directories.
+An implementation directory such as `app/`, `src/`, or another stack-appropriate location may also exist inside `project/`, but it does not replace control directories.
 
 ---
 
@@ -62,7 +61,8 @@ project/
 │   ├── constraints.md
 │   └── brainstorming.md
 ├── docs/
-│   ├── modules/
+│   ├── features/
+│   ├── task_groups/
 │   ├── tasks/
 │   ├── priorities/
 │   │   ├── now.md
@@ -85,24 +85,15 @@ project/
 └── app/
 ```
 
-Additional directories may be added per project needs, but these control artifacts should not be omitted.
-
 ---
 
 ## Protected Vision Rule
 
-`project/vision/core_vision.md` is the canonical source of project intent.
+`project/vision/core_vision.md` is the canonical source of project intent and is treated as protected doctrine.
 
-It is a protected doctrine file.
+`project/vision/constraints.md` is also protected planning doctrine.
 
-Rules:
-
-- only Planning lane may materially change `project/vision/core_vision.md`
-- Execution lane may reference it but must not silently rewrite it
-- Validation lane may assess alignment to it but must not redefine it
-- Governance lane may impose constraints on how it is executed, but must not mutate it by accident
-
-Changes to the core vision should be explicit, reviewable, and intentional.
+Changes to protected vision artifacts should be explicit, reviewable, and planning-lane controlled.
 
 ---
 
@@ -110,19 +101,16 @@ Changes to the core vision should be explicit, reviewable, and intentional.
 
 The project vision must be decomposed into durable planning artifacts:
 
-- broad capabilities or workstreams should be represented in `project/docs/modules/`
-- modules should be decomposed into bounded task files in `project/docs/tasks/`
-- tasks should remain traceable back to modules and, where possible, back to the core vision
-
-This keeps planning context durable between sessions and reduces drift during AI-assisted work.
+- capabilities should be represented in `project/docs/features/`
+- implementation scopes should be represented in `project/docs/task_groups/`
+- atomic execution units should be represented in `project/docs/tasks/`
+- tasks should trace back to task groups, features, and vision
 
 ---
 
 ## Priority Rule
 
-The project must maintain explicit priority state in `project/docs/priorities/`.
-
-Minimum required states:
+The project must maintain explicit priority state in `project/docs/priorities/`:
 
 - `now.md`
 - `next.md`
@@ -130,7 +118,7 @@ Minimum required states:
 - `blocked.md`
 - `done.md`
 
-These files represent planning state, not the machine-consumable active handoff.
+These files represent planning state, not direct execution output.
 
 ---
 
@@ -144,96 +132,69 @@ The project must contain one authoritative active-work package under:
 
 This package defines the exact current work item for execution.
 
-### `project/now/description.md`
-
-Human-readable explanation of:
-
-- what happens next
-- why it matters
-- what successful completion looks like
-- major constraints or risks
-
-### `project/now/prompt.md`
-
-Machine-consumable handoff prompt for the active implementation step.
-
-### `project/now/metadata.json`
-
-Structured metadata for the active work item, such as:
-
-- lane
-- task id
-- status
-- allowed paths
-- forbidden paths
-- validation requirements
-- dependencies
-- supersession state
-
-Only one authoritative active-work package should exist at a time for the project unless parallel execution tracks are explicitly defined.
-
 ---
 
-## Planning Synchronization Rule
+## Execution Safety Model
 
-Planning must not live only in chat memory.
+Execution and planning are intentionally separated.
 
-Every planning session that materially changes project understanding should update the repository artifacts that carry project truth.
+Planning controls doctrine and decomposition artifacts. Execution applies bounded implementation changes and returns evidence.
 
-At minimum, update all affected artifacts in `project/vision/`, `project/docs/`, and `project/now/`.
+Validation is responsible for enforcing this separation.
 
----
+### Protected files (must not be modified during execution)
 
-## Atomic Task Rule
+- `project/vision/core_vision.md`
+- `project/vision/constraints.md`
+- `project/docs/features/*`
+- `project/docs/task_groups/*`
+- `project/docs/priorities/*`
 
-Task files under `project/docs/tasks/` should be bounded and reviewable.
+### Restricted files
 
-Each task file should include, at minimum:
+- `project/docs/tasks/*` may be updated only when explicitly part of planning or task-tracking updates.
 
-- task id
-- title
-- parent module(s)
-- purpose
-- dependencies
-- allowed scope
-- completion criteria
-- validation expectations
-- evidence expectations
-- status
+### Allowed execution mutation scope
+
+- `project/app/*`
+- `project/evidence/*`
+- test and code outputs required by the active task
+
+## Forbidden Mutation Rule
+
+Execution tools must not modify protected files.
+
+Any execution run that mutates protected files is invalid.
+
+The validation layer must detect and reject such runs.
 
 ---
 
 ## Tool Handoff Rule
 
-The execution handoff layer must support multiple execution environments, including:
+Execution handoff must remain tool-agnostic and support:
 
 - command-line AI tools
 - IDE-integrated assistants
 - API-based or custom orchestrators
 
-The framework should not assume one model or interface.
+The canonical source of truth is `project/now/`.
 
-Instead, the canonical active-work package under `project/now/` is the source of truth.
-
-Tool-specific prompts or handoff artifacts should be derived from that source, not invented ad hoc.
+Tool-specific prompts or adapter payloads should be derived from that source, not invented ad hoc.
 
 ---
 
 ## Human Review Rule
 
-Before implementation begins, the operator should be able to review:
+Before execution begins, the operator should review:
 
 - `project/now/description.md`
 - `project/now/prompt.md`
 - `project/now/metadata.json`
 
-This preserves human control and improves auditability.
-
 ---
 
 ## Evidence Rule
-
-The project must preserve validation continuity.
 
 Execution outcomes should be captured under:
 
@@ -241,26 +202,10 @@ Execution outcomes should be captured under:
 - `project/evidence/test_runs/`
 - `project/evidence/artifacts/`
 
-The exact evidence format can vary by project, but the locations should exist.
-
----
-
-## Project Initialization Standard
-
-A derived repository should not be considered fully initialized until:
-
-1. `project/` workspace exists
-2. protected core vision exists
-3. module decomposition has started
-4. initial task breakdown exists
-5. priority files exist
-6. active-work files exist
-7. evidence directories exist
-
 ---
 
 ## Bottom Line
 
-Control Plane Framework should govern more than repository posture.
+Control Plane Framework governs more than repository posture.
 
-It should govern the durable single-project operating structure required to preserve vision, reduce drift, prioritize execution, and hand implementation off to tools in a controlled, reviewable way.
+It governs a durable single-project control structure with explicit execution safety boundaries.
