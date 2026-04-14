@@ -35,27 +35,48 @@ The framework is organized into four lanes:
 
 Each lane has templates that can be completed at project startup and refined over time.
 
-## Typical lifecycle
+## Layered control model
 
-1. Fork the framework for a new project.
-2. Rename and scope the project.
-3. Complete planning templates.
-4. Define governance constraints and review gates.
-5. Execute implementation work inside the control structure.
-6. Validate milestones before treating changes as complete.
+Control Plane Framework operates as a layered control model in each derived repository.
 
-## Project control beyond framework posture
+### 1) Framework self-governance
 
-Control Plane Framework is intended to organize itself and to instantiate a durable control structure for the actual project being built with it.
+The framework governs itself. It preserves doctrine, anti-drift discipline, and reusable control patterns so the framework remains stable and reviewable.
 
-That project control structure includes:
+### 2) Project control
 
-- protected core vision
+A derived repository controls one real project under `project/`, not many projects under one orchestrator.
+
+That controlled project contains:
+
+- protected vision
 - modular decomposition
 - atomic task structure
 - explicit priorities
-- a single authoritative active-work handoff
-- reduced drift during AI-assisted planning and implementation
+- active work state
+- evidence continuity
+
+### 3) Execution handoff
+
+The active-work package under `project/now/` bridges planning truth and implementation action.
+
+Execution tools consume this canonical package, and any tool-specific adapter prompts are derived from it.
+
+## Typical lifecycle
+
+1. Fork or derive the framework for a new project.
+2. Instantiate the controlled project workspace at `project/`.
+3. Capture protected vision and constraints.
+4. Decompose into modules and tasks.
+5. Set planning priorities.
+6. Define and review active work.
+7. Execute and validate inside framework controls.
+
+## Project control beyond framework posture
+
+The framework is not only intended to organize itself. It is also intended to govern the one actual project being built inside the same repository.
+
+This is why planning artifacts, priority state, and active-work handoff are treated as first-class repository assets.
 
 ## Outcome
 

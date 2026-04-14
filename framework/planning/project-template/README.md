@@ -2,19 +2,25 @@
 
 ## Purpose
 
-This directory provides a starter project control structure for initializing a real project from Control Plane Framework.
+This directory provides a starter control structure for initializing one real project from Control Plane Framework.
 
 It is not a complete product template for every language or stack.
 
 It is a control-plane template that preserves:
 
-* protected project vision
-* modular decomposition
-* atomic task structure
-* explicit priorities
-* active work handoff
-* evidence continuity
+- protected project vision
+- modular decomposition
+- atomic task structure
+- explicit priorities
+- active-work handoff
+- evidence continuity
 
-Use this template as the basis for a new project workspace under:
+## Instantiation model
 
-`projects/<project-name>/`
+A derived repository should instantiate one controlled project at:
+
+`project/`
+
+The template in this directory already reflects that single-project structure.
+
+The `project/app/` directory is a placeholder for stack-specific implementation code.

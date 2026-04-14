@@ -26,7 +26,7 @@ Before real implementation work begins in a derived project, the project operati
 
 At minimum, this includes:
 
-- a canonical project workspace
+- the canonical `project/` workspace
 - a protected core vision
 - initial module decomposition
 - initial task artifacts

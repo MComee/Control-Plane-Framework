@@ -20,12 +20,12 @@ The public framework repository serves as:
 
 This repository should remain general, reusable, and not drift into a single product implementation.
 
-### 2. Private project forks
-Private forks or derivative repositories serve as:
+### 2. Derived project repository
+A derived repository serves as:
 
-- implementation environments for product-specific work
-- places for experiments, proprietary planning, and active development
-- repositories where the framework is adapted to a specific application or system
+- the implementation environment for one controlled project
+- the location where project planning, governance, execution, and validation state are maintained
+- the place where product-specific work happens while framework discipline is preserved
 
 ## Why this pattern works
 
@@ -42,12 +42,12 @@ It also supports a workflow in which the framework can evolve carefully while ac
 1. Start from the public Control Plane Framework repository.
 2. Fork the repository or clone its structure into a new private repository.
 3. Rename the project to match the new application or system.
-4. Instantiate the project operating structure under `projects/<project-name>/`.
-5. Capture the project's protected core vision.
+4. Instantiate the controlled project under `project/`.
+5. Capture the protected core vision.
 6. Complete initial module and task decomposition.
-7. Define project-specific governance constraints and acceptance criteria.
-8. Create the active-work handoff package.
-9. Perform implementation work in the private repository.
+7. Establish priorities.
+8. Establish the active-work handoff package.
+9. Execute and validate implementation work using the framework.
 10. Promote only reusable framework improvements back to the public framework repository.
 
 ## What belongs in the public framework repo
@@ -60,13 +60,13 @@ Keep these in the public framework repository:
 - framework-level workflow improvements
 - neutral examples that do not expose private product details
 
-## What belongs in private forks
+## What belongs in derived repositories
 
-Keep these in private forks or project-specific repositories:
+Keep these in derived repositories:
 
-- product-specific code
-- proprietary prompts or project data
-- implementation details tied to a single application
+- one controlled project's implementation code
+- project-specific prompts or project data
+- implementation details tied to that project
 - sensitive experiments
 - internal notes that are not meant to become reusable framework assets
 
@@ -75,7 +75,7 @@ Keep these in private forks or project-specific repositories:
 A useful decision rule is:
 
 - if a change improves the framework as a reusable system, consider promoting it back
-- if a change only serves one product, keep it in the product repository
+- if a change only serves one project, keep it in the derived repository
 
 ## Governance for the public framework
 
@@ -90,4 +90,4 @@ Recommended posture:
 
 ## Long-term benefit
 
-Over time, this pattern allows a developer to build a portfolio of private or product-specific work on top of a stable public framework without diluting the clarity of the framework repository.
+Over time, this pattern allows a developer to build project-specific systems on top of a stable public framework without diluting the clarity of the framework repository.

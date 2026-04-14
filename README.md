@@ -59,75 +59,6 @@ Modern AI-assisted development often involves both:
 
 This framework provides a structure that allows both to operate within a single governed workflow.
 
-### Multi-Model Strategy
-
-Instead of selecting a single tool for every task, this framework supports a multi-model approach:
-
-- different tools can be used for different classes of work
-- tools can be selected based on strengths rather than convenience
-- workflows remain consistent even as models and interfaces change
-
-A developer may choose to:
-
-- use one chat-based tool for planning and decomposition
-- use another for critique, review, or alternative reasoning
-- use a command-line tool or local runtime for implementation and iteration
-
-The framework does not prescribe which tools to use. It assumes that:
-
-- multiple tools may be used in the same project
-- different tools may perform better on different problems
-- the workflow should remain stable regardless of tool choice
-
-### Integration Expectations
-
-The framework is designed to work with tools that can interact with a repository in a controlled way.
-
-Typical capabilities include:
-
-- reading repository context
-- writing or proposing structured file changes
-- following prompt or workflow templates
-- operating inside defined constraints and review gates
-
-In practice, this may include:
-
-- chat-based AI tools with repository integration
-- command-line AI tools operating on a local checkout
-- custom or self-hosted interfaces built on top of model APIs and Git workflows
-
-The framework does not depend on a single integration mechanism. It can be used with:
-
-- direct GitHub integrations
-- local Git workflows
-- custom adapters or orchestration layers
-
-### Separation of Workflow and Tooling
-
-A key design principle of the framework is separation between:
-
-- **workflow structure**: planning, governance, execution, validation
-- **tooling choice**: which model or interface is used for a given task
-
-This separation allows:
-
-- tools to be swapped without redesigning the workflow
-- multiple tools to be used in parallel
-- experimentation with new models without destabilizing project process
-
-### Why this matters
-
-AI tooling changes rapidly, and no single model is consistently optimal across all tasks.
-
-By structuring development around a stable control plane rather than a single tool, this framework enables:
-
-- more reliable workflows
-- better use of model-specific strengths
-- reduced coupling between process and tooling
-- long-term adaptability as new tools emerge
-
-The result is a system where the developer remains in control of the workflow, while AI tools act as interchangeable components within that system.
-
 ## Recommended repository posture
 
 This repository is intended to remain a clean, reusable public framework.
@@ -160,18 +91,32 @@ Used to convert plans into implementation tasks, work items, changes, and iterat
 ### 4. Validation
 Used to verify readiness, acceptance criteria, auditability, and quality before changes are treated as complete.
 
-## Project Control Structure
+## Layered control model
 
-Control Plane Framework governs framework posture and also expects each real project to instantiate a canonical project workspace under `projects/<project-name>/`.
+Each derived repository instance controls exactly one real project.
 
-A fully initialized project includes:
+The framework uses three control layers:
 
-- a protected core vision
-- modular decomposition derived from that vision
+### Framework self-governance
+
+The framework governs itself so doctrine, anti-drift rules, and reusable control patterns remain stable and reviewable.
+
+### Project control
+
+The same repository governs one controlled project under `project/`, including:
+
+- protected vision
+- modular decomposition
 - atomic task artifacts
-- explicit planning priorities
-- an authoritative active-work package
-- evidence locations for validation continuity
+- explicit priorities
+- active work state
+- evidence continuity
+
+### Execution handoff
+
+The active work package under `project/now/` is the canonical bridge from planning truth to implementation execution.
+
+Tool-specific prompts or adapter instructions are derived from that package so execution remains bounded and auditable across interfaces.
 
 See:
 
@@ -179,6 +124,42 @@ See:
 - [Project Initialization Standard](docs/project-initialization-standard.md)
 - [Planning Synchronization Rule](docs/planning-synchronization-rule.md)
 - [Active Work Handoff](docs/active-work-handoff.md)
+
+## Project Control Structure
+
+A derived repository is considered operationally initialized when it instantiates one canonical controlled project workspace at `project/`.
+
+Minimum project control structure:
+
+```text
+project/
+├── vision/
+│   ├── core_vision.md
+│   ├── constraints.md
+│   └── brainstorming.md
+├── docs/
+│   ├── modules/
+│   ├── tasks/
+│   ├── priorities/
+│   │   ├── now.md
+│   │   ├── next.md
+│   │   ├── later.md
+│   │   ├── blocked.md
+│   │   └── done.md
+│   ├── roadmap.md
+│   ├── decisions.md
+│   ├── definition_of_done.md
+│   └── execution_control.md
+├── now/
+│   ├── description.md
+│   ├── prompt.md
+│   └── metadata.json
+├── evidence/
+│   ├── run_logs/
+│   ├── test_runs/
+│   └── artifacts/
+└── app/
+```
 
 ## Example use cases
 
@@ -221,29 +202,36 @@ See [Use Cases](docs/use-cases.md) for details.
 │   ├── planning/
 │   │   └── project-template/
 │   │       ├── README.md
-│   │       ├── vision/
-│   │       │   ├── core_vision.md
-│   │       │   ├── constraints.md
-│   │       │   └── brainstorming.md
-│   │       ├── docs/
-│   │       │   ├── modules/
-│   │       │   │   └── README.md
-│   │       │   ├── tasks/
-│   │       │   │   └── README.md
-│   │       │   ├── priorities/
-│   │       │   │   ├── now.md
-│   │       │   │   ├── next.md
-│   │       │   │   ├── later.md
-│   │       │   │   ├── blocked.md
-│   │       │   │   └── done.md
-│   │       │   ├── roadmap.md
-│   │       │   ├── decisions.md
-│   │       │   ├── definition_of_done.md
-│   │       │   └── execution_control.md
-│   │       └── now/
-│   │           ├── description.md
-│   │           ├── prompt.md
-│   │           └── metadata.json
+│   │       └── project/
+│   │           ├── vision/
+│   │           │   ├── core_vision.md
+│   │           │   ├── constraints.md
+│   │           │   └── brainstorming.md
+│   │           ├── docs/
+│   │           │   ├── modules/
+│   │           │   │   └── README.md
+│   │           │   ├── tasks/
+│   │           │   │   └── README.md
+│   │           │   ├── priorities/
+│   │           │   │   ├── now.md
+│   │           │   │   ├── next.md
+│   │           │   │   ├── later.md
+│   │           │   │   ├── blocked.md
+│   │           │   │   └── done.md
+│   │           │   ├── roadmap.md
+│   │           │   ├── decisions.md
+│   │           │   ├── definition_of_done.md
+│   │           │   └── execution_control.md
+│   │           ├── now/
+│   │           │   ├── description.md
+│   │           │   ├── prompt.md
+│   │           │   └── metadata.json
+│   │           ├── evidence/
+│   │           │   ├── run_logs/
+│   │           │   ├── test_runs/
+│   │           │   └── artifacts/
+│   │           └── app/
+│   │               └── README.md
 │   ├── governance/
 │   ├── execution/
 │   └── validation/

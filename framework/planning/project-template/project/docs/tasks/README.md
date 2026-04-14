@@ -2,7 +2,7 @@
 
 Create one file per bounded, reviewable task.
 
-Tasks should remain traceable to the project’s modules and, where possible, to the vision.
+Tasks should remain traceable to the project's modules and, where possible, to the vision.
 
 Recommended task contents:
 
